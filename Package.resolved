@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "CPNG",
+        "repositoryURL": "https://github.com/LouiseDevTeam/CPNG.git",
+        "state": {
+          "branch": null,
+          "revision": "9786bb0960f5a6eae13296f12a6e100c1099a93a",
+          "version": "0.0.2"
+        }
+      },
+      {
         "package": "CWebP",
         "repositoryURL": "https://github.com/LouiseDevTeam/CWebP.git",
         "state": {

@@ -1,8 +1,6 @@
 import CWebP
+import CPNG
 
-var a = WebPPicture()
-
-print(a)
-
-print("Hello, world!")
-
+func ReadYUV(data : UnsafePointer<UInt8> ) -> CInt {
+    
+}
