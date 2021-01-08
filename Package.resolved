@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CWebP",
+        "repositoryURL": "https://github.com/LouiseDevTeam/CWebP.git",
+        "state": {
+          "branch": null,
+          "revision": "84e34b7f1e63e277caff796920cb76554b8d625f",
+          "version": "0.0.1"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
