@@ -20,9 +20,9 @@ import CPNG
     }
 }
 */
-var inFile : UnsafePointer<Int8>? = nil
-var outFile : UnsafePointer<Int8>? = nil
-var dumpFile : UnsafePointer<Int8>? = nil
+var inFile : UnsafePointer<CChar>? = nil
+var outFile : UnsafePointer<CChar>? = nil
+var dumpFile : UnsafePointer<CChar>? = nil
 var out : UnsafeMutablePointer<FILE>? = nil
 
 var shortOutput = 0
@@ -38,14 +38,20 @@ var showProgress = 0
 var keepMetadata = 0
 var metadataWritten = 0
 
-var picture = WebPPicture()
+var picture : WebPPicture
 
 var printDistortion = -1
 
-var originalPicture = WebPPicture()
-var config = WebPConfig()
-var stats = WebPAuxStats()
-var memoryWriter = WebPMemoryWriter()
+var originalPicture : WebPPicture
+var config : WebPConfig
+var stats : WebPAuxStats
+var memoryWriter : WebPMemoryWriter
 var useMemoryWriter : CInt
 
+var metaData : Metadata = Metadata()
+//var stopWatch : StopWatch
 
+var argc = 5
+var argv = ["1","2","3","4","5"]
+
+CMetadata.metadataInit(metadata: &metaData)

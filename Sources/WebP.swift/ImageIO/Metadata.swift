@@ -8,14 +8,25 @@
 import CWebP
 
 struct MetadataPayload {
-    public var bytes : UnsafeMutablePointer<__uint8_t>
+    public var bytes : UnsafeMutablePointer<__uint8_t>?
     public var size : size_t
+    
+    init() {
+        bytes = nil
+        size = 0
+    }
 }
 
 struct Metadata {
     public var exif : MetadataPayload
     public var iccp : MetadataPayload
     public var xmp : MetadataPayload
+    
+    init() {
+        exif = MetadataPayload()
+        iccp = MetadataPayload()
+        xmp = MetadataPayload()
+    }
 }
 
 struct CMetadata {
