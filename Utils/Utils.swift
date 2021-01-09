@@ -12,7 +12,7 @@ struct Utils {
       print("""
             Usage:
 
-               cwebp [options] -q quality input.png -o output.webp
+               cwebp [options] -q quality -i input.png -o output.webp
 
             where quality is between 0 (poor) to 100 (very good).
             Typical value is around 80.
@@ -24,7 +24,7 @@ struct Utils {
     public static func helpLong() {
         print("""
               Usage:
-               cwebp [-preset <...>] [options] in_file [-o out_file]
+               cwebp [-preset <...>] [options] [-i in_file] [-o out_file]
 
               If input size (-s) for an image is not specified, it is
               assumed to be a PNG, JPEG, TIFF or WebP file.
