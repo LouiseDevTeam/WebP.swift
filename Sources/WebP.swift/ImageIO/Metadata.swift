@@ -45,7 +45,7 @@ struct CMetadata {
         payload?.deallocate()
     }
     
-    public static func metadataFree(metadata : UnsafeMutablePointer<Metadata>?) {
+    public static func metadataFree(_ metadata : UnsafeMutablePointer<Metadata>?) {
         if metadata == nil {
             return
         }

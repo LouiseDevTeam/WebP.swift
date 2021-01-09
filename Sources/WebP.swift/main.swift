@@ -31,13 +31,13 @@ var stats = WebPAuxStats()
 var memoryWriter = WebPMemoryWriter()
 var useMemoryWriter : CInt
 
-var metaData : Metadata = Metadata()
+var metadata : Metadata = Metadata()
 //var stopWatch : StopWatch
 
 var argc = 6
-var argv = ["cwebp","-lossless","-i","1.png","-o","1.webp"]
+var argv = ["cwebp","-lossless","-i","","-o","1.webp"]
 
-CMetadata.metadataInit(metadata: &metaData)
+CMetadata.metadataInit(metadata: &metadata)
 
 WebPMemoryWriterInit(&memoryWriter)
 if (WebPPictureInit(&picture) == 0) ||
@@ -57,7 +57,8 @@ for i in argv.indices {
         continue
     }
     
-    //var parseError = 0
+    var parseError = 0
+    
     if argv[i] == "-h" || argv[i] == "-help" {
         Utils.helpShort()
         exit(0)
@@ -292,4 +293,25 @@ for i in argv.indices {
         Utils.helpLong()
         exit(-1)
     }
+    
+    if parseError != 0 {
+        Utils.helpLong()
+        exit(-1)
+    }
+}
+
+if inFile == "" {
+    print("No input file specified!")
+    Utils.helpShort()
+    
+    WebPMemoryWriterClear(&memoryWriter)
+    WebPFree(picture.extra_info)
+    CMetadata.metadataFree(&metadata)
+    WebPPictureFree(&picture)
+    WebPPictureFree(&originalPicture)
+    if out != nil && out != stdout {
+      fclose(out)
+    }
+    
+    exit(0)
 }
