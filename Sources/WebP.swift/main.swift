@@ -1,25 +1,6 @@
 import CWebP
 import CPNG
 
-/*func ReadYUV(data : inout UnsafeMutablePointer<__uint8_t>, dataSize : size_t, pic : UnsafeMutablePointer<WebPPicture>) -> CInt {
-    let useArgb = pic.pointee.use_argb
-    let uvWidth = (pic.pointee.width + 1) / 2
-    let uvHeight = (pic.pointee.height + 1) / 2
-    let yPlaneSize = pic.pointee.width * pic.pointee.height
-    let uvPlaneSize = uvWidth * uvHeight
-    let expectedDataSize = yPlaneSize + 2 * uvPlaneSize
-    
-    if dataSize != expectedDataSize {
-        print("input data doesn't have the expected size (\(dataSize) instead of \(expectedDataSize)\n")
-        return 0
-    }
-    
-    pic.pointee.use_argb = 0
-    if (WebPPictureAlloc(pic) == 0) {
-        return 0
-    }
-}
-*/
 var inFile : UnsafePointer<CChar>? = nil
 var outFile : UnsafePointer<CChar>? = nil
 var dumpFile : UnsafePointer<CChar>? = nil
@@ -38,20 +19,34 @@ var showProgress = 0
 var keepMetadata = 0
 var metadataWritten = 0
 
-var picture : WebPPicture
+var picture = WebPPicture()
 
 var printDistortion = -1
 
-var originalPicture : WebPPicture
-var config : WebPConfig
-var stats : WebPAuxStats
-var memoryWriter : WebPMemoryWriter
+var originalPicture = WebPPicture()
+var config = WebPConfig()
+var stats = WebPAuxStats()
+var memoryWriter = WebPMemoryWriter()
 var useMemoryWriter : CInt
 
 var metaData : Metadata = Metadata()
 //var stopWatch : StopWatch
 
-var argc = 5
+var argc = 1
 var argv = ["1","2","3","4","5"]
 
 CMetadata.metadataInit(metadata: &metaData)
+
+WebPMemoryWriterInit(&memoryWriter)
+if (WebPPictureInit(&picture) == 0) ||
+    (WebPPictureInit(&originalPicture) == 0) ||
+    (WebPConfigInit(&config) == 0) {
+    print("Error! Version mismatch!\n")
+    exit(0)
+}
+
+if argc == 1 {
+    Utils.HelpShort()
+    exit(0)
+}
+
