@@ -48,4 +48,4 @@ var stats = WebPAuxStats()
 var memoryWriter = WebPMemoryWriter()
 var useMemoryWriter : CInt
 
-var metadata = Metadata()
+
