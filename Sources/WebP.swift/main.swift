@@ -32,8 +32,8 @@ var useMemoryWriter : CInt
 var metaData : Metadata = Metadata()
 //var stopWatch : StopWatch
 
-var argc = 1
-var argv = ["1","2","3","4","5"]
+var argc = 2
+var argv = ["cwebp","-H","3","4","5"]
 
 CMetadata.metadataInit(metadata: &metaData)
 
@@ -46,7 +46,17 @@ if (WebPPictureInit(&picture) == 0) ||
 }
 
 if argc == 1 {
-    Utils.HelpShort()
+    Utils.helpShort()
     exit(0)
 }
 
+for i in argv {
+    var parseError = 0;
+    if i == "-h" || i == "-help" {
+        Utils.helpShort()
+        exit(0)
+    } else if i == "-H" || i == "-longhelp" {
+        Utils.helpLong()
+        exit(0)
+    }
+}
