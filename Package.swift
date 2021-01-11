@@ -7,8 +7,8 @@ let package = Package(
     name: "WebP.swift",
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/LouiseDevTeam/CWebP.git", from: "0.0.1"),
-        .package(url: "https://github.com/LouiseDevTeam/CPNG.git", from: "0.0.4"),
+        //.package(url: "https://github.com/LouiseDevTeam/CWebP.git", from: "0.0.1"),
+        //.package(url: "https://github.com/LouiseDevTeam/CPNG.git", from: "0.0.4"),
         
     ],
     targets: [
@@ -16,7 +16,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "WebP.swift",
-            dependencies: ["CWebP","CPNG"]),
+            dependencies: [/*"CWebP","CPNG"*/]),
         .testTarget(
             name: "WebP.swiftTests",
             dependencies: ["WebP.swift"]),
